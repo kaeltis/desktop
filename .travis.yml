@@ -3,8 +3,9 @@ os: osx
 osx_image: xcode11.6
 
 env:
-  - NC_BUILD_DIR=$TRAVIS_BUILD_DIR/build
-  - NC_INSTALL_DIR=$HOME/nextcloud-desktop-client
+  global:
+    - NC_BUILD_DIR=$TRAVIS_BUILD_DIR/build
+    - NC_INSTALL_DIR=$HOME/nextcloud-desktop-client
 
 addons:
   artifacts:
