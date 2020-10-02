@@ -39,4 +39,5 @@ EVZn7ZaYDipWV7FKAoEcuAwaJPhaep9hDjGtXNI1KQFt3agDMobUAjj2T0srivv0LP9qBpeCxclgBKqQ
 yOOB6j1M0WgZYoNKPdvXEJMR8YCHD52z0y9KVdJ8ibnSsWy6b1cIU7Kvwqfb2nNpaUmYwf8v3XgSG4LxVqn6R/IpmBYzXLyYxD96nXVb/vnZ8DaMR5to5DB3qiuqGP3P
 oDOFR/PP3QgcFTr/1YfxIaDTfaWc/Y9LFYQkyJBXmOi1SHEWajAh2zc=
   file: ${HOME}/${TRAVIS_COMMIT}-${TRAVIS_BUILD_NUMBER}.tar.gz
+  draft: true
   skip_cleanup: true
