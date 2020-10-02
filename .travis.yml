@@ -10,7 +10,6 @@ env:
 addons:
   artifacts:
     paths:
-    - $NC_BUILD_DIR
     - $NC_INSTALL_DIR
   homebrew:
     packages:
