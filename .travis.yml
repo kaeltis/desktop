@@ -6,7 +6,7 @@ addons:
     - cmake
     - qt5
     - qtkeychain
-    - libressl
+    - openssl
     casks:
     - packages
 
