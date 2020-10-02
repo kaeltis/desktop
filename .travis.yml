@@ -4,13 +4,10 @@ osx_image: xcode11.6
 
 env:
   global:
-    - NC_BUILD_DIR=$TRAVIS_BUILD_DIR/build
-    - NC_INSTALL_DIR=$HOME/nextcloud-desktop-client
+    - NC_BUILD_DIR=${TRAVIS_BUILD_DIR}/build
+    - NC_INSTALL_DIR=${HOME}/nextcloud-desktop-client
 
 addons:
-  artifacts:
-    paths:
-    - $NC_INSTALL_DIR
   homebrew:
     packages:
     - cmake
@@ -21,9 +18,25 @@ addons:
     - packages
 
 script:
-     - mkdir -p $NC_BUILD_DIR
-     - cd $NC_BUILD_DIR
-     - cmake -Wno-dev -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ -DCMAKE_PREFIX_PATH=/usr/local/opt/qt5 -DCMAKE_INSTALL_PREFIX=$NC_INSTALL_DIR -DCMAKE_BUILD_TYPE=Debug -DNO_SHIBBOLETH=1 $TRAVIS_BUILD_DIR
+     - mkdir -p ${NC_BUILD_DIR}
+     - cd ${NC_BUILD_DIR}
+     - cmake -Wno-dev -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ -DCMAKE_PREFIX_PATH=/usr/local/opt/qt5 -DCMAKE_INSTALL_PREFIX=${NC_INSTALL_DIR} -DCMAKE_BUILD_TYPE=Debug -DNO_SHIBBOLETH=1 ${TRAVIS_BUILD_DIR}
      - make
      - make install
-     - bash admin/osx/create_mac.sh $NC_INSTALL_DIR $NC_BUILD_DIR "Quality Location GmbH"
+     - bash admin/osx/create_mac.sh ${NC_INSTALL_DIR} ${NC_BUILD_DIR} "Quality Location GmbH"
+
+before_deploy:
+- cd ${HOME}
+- tar -zcf ${TRAVIS_COMMIT}-${TRAVIS_BUILD_NUMBER}.tar.gz nextcloud-desktop-client
+
+deploy:
+  provider: releases
+  api_key:
+    secure: Gk/mZgn/fag3bDr7R9iHLuTJeJZYDnzDoJ0kGIR57vKff258MqAIxptK4aBSmI06RPKFhNwFwHggV3U1xtFkVnN72Wuv3di9LfaTidwkA2e27WLcQOVn
+34GJDQP0ITjPTECaOMwWH/7BHv3gq6RHoN77erydOxxyMOrZWZ5KYlyzL0cr0T8kr1VgvurXo/hqkZnrqSxwU2XJIDWETYrFg7ZsuT/eXMsaM/81fd8Q0dUVoadqiPmP
+4B50D/qJuqrah5HIRv9KIOK/9+DndgzF5JjtE2KOT6kKdPr/Ky0TZ/gPKnFh2llmO85hGxj4sBH6DesPHyuf26jZk6Y1Um5Bvo8Pvb2d4W6WrzTHIUescykIftbTYQIP
+EVZn7ZaYDipWV7FKAoEcuAwaJPhaep9hDjGtXNI1KQFt3agDMobUAjj2T0srivv0LP9qBpeCxclgBKqQwHiE9QU7zcADJa6WcYbO8NPtj27F4MS2WEP0Ak3Kl6heGOlQ
+yOOB6j1M0WgZYoNKPdvXEJMR8YCHD52z0y9KVdJ8ibnSsWy6b1cIU7Kvwqfb2nNpaUmYwf8v3XgSG4LxVqn6R/IpmBYzXLyYxD96nXVb/vnZ8DaMR5to5DB3qiuqGP3P
+oDOFR/PP3QgcFTr/1YfxIaDTfaWc/Y9LFYQkyJBXmOi1SHEWajAh2zc=
+  file: ${HOME}/${TRAVIS_COMMIT}-${TRAVIS_BUILD_NUMBER}.tar.gz
+  skip_cleanup: true
