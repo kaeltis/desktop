@@ -1,5 +1,5 @@
 set( APPLICATION_NAME       "EFScloud" )
-set( APPLICATION_SHORTNAME  "NEFScloud" )
+set( APPLICATION_SHORTNAME  "EFScloud" )
 set( APPLICATION_EXECUTABLE "EFScloud" )
 set( APPLICATION_DOMAIN     "efs-ag.services" )
 set( APPLICATION_VENDOR     "EFS AG" )
