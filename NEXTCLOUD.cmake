@@ -1,16 +1,16 @@
 set( APPLICATION_NAME       "EFScloud" )
 set( APPLICATION_SHORTNAME  "EFScloud" )
-set( APPLICATION_EXECUTABLE "efscloud" )
+set( APPLICATION_EXECUTABLE "EFScloud" )
 set( APPLICATION_DOMAIN     "efs-ag.services" )
 set( APPLICATION_VENDOR     "EFS AG" )
-set( APPLICATION_UPDATE_URL "https://updates.nextcloud.org/client/" CACHE STRING "URL for updater" )
+set( APPLICATION_UPDATE_URL "https://clientupdate.efs-ag.services/client/" CACHE STRING "URL for updater" )
 set( APPLICATION_HELP_URL   "" CACHE STRING "URL for the help menu" )
-set( APPLICATION_ICON_NAME  "Nextcloud" )
-set( APPLICATION_SERVER_URL "" CACHE STRING "URL for the server to use. If entered, the UI field will be pre-filled with it" )
+set( APPLICATION_ICON_NAME  "EFScloud" )
+set( APPLICATION_SERVER_URL "https://cloud.efs-ag.de" CACHE STRING "URL for the server to use. If entered, the UI field will be pre-filled with it" )
 set( APPLICATION_SERVER_URL_ENFORCE ON ) # If set and APPLICATION_SERVER_URL is defined, the server can only connect to the pre-defined URL
-set( APPLICATION_REV_DOMAIN "com.nextcloud.desktopclient" )
+set( APPLICATION_REV_DOMAIN "com.efscloud.desktopclient" )
 
-set( LINUX_PACKAGE_SHORTNAME "nextcloud" )
+set( LINUX_PACKAGE_SHORTNAME "efscloud" )
 set( LINUX_APPLICATION_ID "${APPLICATION_REV_DOMAIN}.${LINUX_PACKAGE_SHORTNAME}")
 
 set( THEME_CLASS            "NextcloudTheme" )
@@ -32,7 +32,7 @@ option( WITH_PROVIDERS "Build with providers list" ON )
 
 
 ## Theming options
-set( APPLICATION_WIZARD_HEADER_BACKGROUND_COLOR "#0082c9" CACHE STRING "Hex color of the wizard header background")
+set( APPLICATION_WIZARD_HEADER_BACKGROUND_COLOR "#00205c" CACHE STRING "Hex color of the wizard header background")
 set( APPLICATION_WIZARD_HEADER_TITLE_COLOR "#ffffff" CACHE STRING "Hex color of the text in the wizard header")
 option( APPLICATION_WIZARD_USE_CUSTOM_LOGO "Use the logo from ':/client/theme/colored/wizard_logo.png' else the default application icon is used" ON )
 
