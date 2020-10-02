@@ -2,8 +2,15 @@ language: cpp
 os: osx
 osx_image: xcode11.6
 
+env:
+  - NC_BUILD_DIR=$TRAVIS_BUILD_DIR/build
+  - NC_INSTALL_DIR=$HOME/nextcloud-desktop-client
+
 addons:
-  artifacts: true
+  artifacts:
+    paths:
+    - ~/nextcloud-desktop-client
+    - ~/desktop/build
   homebrew:
     packages:
     - cmake
@@ -14,9 +21,9 @@ addons:
     - packages
 
 script:
-     - mkdir -p build
-     - cd build
-     - cmake -Wno-dev -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ -DCMAKE_PREFIX_PATH=/usr/local/opt/qt5 -DCMAKE_INSTALL_PREFIX=~/nextcloud-desktop-client -DCMAKE_BUILD_TYPE=Debug -DNO_SHIBBOLETH=1 ..
+     - mkdir -p $NC_BUILD_DIR
+     - cd $NC_BUILD_DIR
+     - cmake -Wno-dev -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl/ -DCMAKE_PREFIX_PATH=/usr/local/opt/qt5 -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR -DCMAKE_BUILD_TYPE=Debug -DNO_SHIBBOLETH=1 $TRAVIS_BUILD_DIR
      - make
      - make install
-     - bash admin/osx/create_mac.sh ~/nextcloud-desktop-client $(pwd) "Quality Location GmbH"
+     - bash admin/osx/create_mac.sh $NC_INSTALL_DIR $NC_BUILD_DIR "Quality Location GmbH"
